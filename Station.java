@@ -57,7 +57,7 @@ public class Station
             try
             {
 
-                URL stationrisks = new URL("http://maxvigdorchik.com:5000/floodwarning/stationlist");
+                URL stationrisks = new URL("http://maxvigdorchik.com:5000/floodwarning/risks");
                 URLConnection sc = stationrisks.openConnection();
                 if (!(sc instanceof HttpURLConnection))
                 {
@@ -85,7 +85,7 @@ public class Station
                         double lat = Double.parseDouble(arr[0]);
                         double lon = Double.parseDouble(arr[1]);
 
-                        result.add(new StationItem(jo.getString("name"), "Unknown", lat, lon));
+                        result.add(new StationItem(jo.getString("name"), jo.getString("risk"), lat, lon));
                     }
                 }
                 return result;

@@ -14,6 +14,8 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -27,6 +29,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private ArrayList<StationItem> stationList;
     private static double lat,lon;
     private static String id;
+    private static String risk;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -46,6 +49,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             lat = b.getDouble("lat");
             lon = b.getDouble("lon");
             id = b.getString("id");
+            risk = b.getString("risk");
         }
 
     }
@@ -87,10 +91,32 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void setupMap(double lat, double lon, String id)
     {
         LatLng mark = new LatLng(lat,lon);
+        switch(risk) {
+            case "severe": mMap.addMarker(new MarkerOptions().position(mark).title(id).icon(getMarkerIcon("#f40808")));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(50,0)));
+                break;
+            case "high": mMap.addMarker(new MarkerOptions().position(mark).title(id).icon(getMarkerIcon("#ffa500")));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(50,0)));
+                break;
+            case "moderate": mMap.addMarker(new MarkerOptions().position(mark).title(id).icon(getMarkerIcon("#3fe5e5")));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(50,0)));
+                break;
+            case "low": mMap.addMarker(new MarkerOptions().position(mark).title(id).icon(getMarkerIcon("#ff46a3")));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(50,0)));
+                break;
+            default: mMap.addMarker(new MarkerOptions().position(mark).title(id));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(50,0)));
+                break;
+        }
         mMap.addMarker(new MarkerOptions().position(mark).title(id));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(50,0)));
     }
 
+    public BitmapDescriptor getMarkerIcon(String color) {
+        float[] hsv = new float[3];
+        Color.colorToHSV(Color.parseColor(color), hsv);
+        return BitmapDescriptorFactory.defaultMarker(hsv[0]);
+    }
 
     public void updateStations(View view)
     {

@@ -37,6 +37,7 @@ public class ListHolder extends AppCompatActivity implements StationFragment.OnL
         myIntent.putExtra("lat",item.lat);
         myIntent.putExtra("lon",item.lon);
         myIntent.putExtra("id",item.id);
+        myIntent.putExtra("risk", item.risk);
         ListHolder.this.startActivity(myIntent);
     }
 
