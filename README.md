@@ -17,6 +17,8 @@ machine and caching has not been implemented yet (although in theory it should b
 
 The code handling all of the stationdata computations can be found here: https://github.com/MaxVigdorchik/partia-flood-warning-system/.
 
+Some screenshots of the app's functionality can be found here: https://drive.google.com/file/d/0B58bd97ag0AyYnJOc0JKaTFKbG8/view?usp=sharing
+
 Development is currently stopped while the code is being marked.
 
 Created by Max Vigdorchik
