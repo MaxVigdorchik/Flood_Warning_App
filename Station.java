@@ -95,7 +95,7 @@ public class Station
                 e.printStackTrace();
                 Log.e("Error in background", "doInBackground: MAJOR ERROR");
                 //return null;
-                result.add(new StationItem("Couldn't Parse", "Shit", 0, 0));
+                result.add(new StationItem("Couldn't Parse", "Help", 0, 0));
                 return result;
             }
         }
